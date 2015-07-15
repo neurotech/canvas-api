@@ -1,0 +1,29 @@
+{
+  "name": "canvas-api",
+  "version": "1.0.0",
+  "description": "A simple wrapper for the Canvas LMS API.",
+  "main": "index.js",
+  "dependencies": {
+    "request": "^2.58.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "npm run tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neurotech/canvas-api.git"
+  },
+  "keywords": [
+    "canvas",
+    "api",
+    "instructure",
+    "lms"
+  ],
+  "author": "Tim Douglas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/neurotech/canvas-api/issues"
+  },
+  "homepage": "https://github.com/neurotech/canvas-api#readme"
+}
