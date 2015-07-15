@@ -7,10 +7,11 @@
     "request": "^2.58.0"
   },
   "devDependencies": {
+    "tap-prettify": "0.0.2",
     "tape": "^4.0.0"
   },
   "scripts": {
-    "test": "node tests.js"
+    "test": "tap-prettify tests/index.js"
   },
   "repository": {
     "type": "git",
