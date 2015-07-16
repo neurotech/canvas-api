@@ -1,6 +1,6 @@
 # canvas-api
 
-![Travis CI Build Status](https://travis-ci.org/neurotech/canvas-api.svg?branch=master)
+[![Travis CI Build Status](https://travis-ci.org/neurotech/canvas-api.svg?branch=master)](https://travis-ci.org/neurotech/canvas-api)
 
 *A Promise-based wrapper for the [Canvas LMS](http://www.canvaslms.com/) API.*
 
