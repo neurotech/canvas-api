@@ -1,12 +1,21 @@
 var test = require('tape');
 var canvas = require('../lib/canvas-api');
 
-var auth = { 'Authorization': 'Bearer ' + process.env.CANVAS_API_KEY };
-var domain = process.env.CANVAS_API_DOMAIN;
+test('Canvas API - SIS Import Status - No arguments', function (t) {
+  t.plan(1);
+  canvas.sisStatus()
+    .then(function (res) {
+      t.equal(typeof res, 'undefined', 'No response - there must have been an error.');
+    }, function (err) {
+      t.ok(err, 'Returned error: ' + '`' + err + '`');
+    });
+});
 
-test('Canvas API - SIS Import Status - Latest', function (t) {
+test('Canvas API - SIS Import Status - \'latest\'', function (t) {
   t.plan(2);
-  canvas.sisStatus(auth, domain)
+  canvas.sisStatus({
+    scope: 'latest'
+  })
     .then(function (res) {
       t.equal(typeof res, 'object', 'Returned the latest SIS Import object.');
       t.equal(typeof res.id, 'number', 'The ID of the latest SIS Import object is a number.');
@@ -15,15 +24,19 @@ test('Canvas API - SIS Import Status - Latest', function (t) {
 
 test('Canvas API - SIS Import Status - ID of 1', function (t) {
   t.plan(1);
-  canvas.sisStatus(auth, domain, 1)
+  canvas.sisStatus({
+    scope: 1
+  })
     .then(function (res) {
-      t.equal(res.id, 1, 'Returned a SIS Import object with the ID of 1.');
+      t.equal(res.id, 1, 'Returned a SIS Import object with the ID of: ' + res.id);
     });
 });
 
 test('Canvas API - SIS Import Status - All', function (t) {
   t.plan(1);
-  canvas.sisStatus(auth, domain, 'all')
+  canvas.sisStatus({
+    scope: 'all'
+  })
     .then(function (res) {
       t.equal(typeof res.sis_imports, 'object', 'Returned all SIS Import objects.');
     });
