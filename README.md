@@ -2,6 +2,8 @@
 
 [![Travis CI Build Status](https://travis-ci.org/neurotech/canvas-api.svg?branch=master)](https://travis-ci.org/neurotech/canvas-api)
 
+[![Coverage Status](https://coveralls.io/repos/neurotech/canvas-api/badge.svg?branch=master&service=github)](https://coveralls.io/github/neurotech/canvas-api?branch=master)
+
 *A Promise-based wrapper for the [Canvas LMS](http://www.canvaslms.com/) API.*
 
 ## Installation
