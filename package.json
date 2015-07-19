@@ -4,6 +4,7 @@
   "description": "A simple wrapper for the Canvas LMS API.",
   "main": "index.js",
   "dependencies": {
+    "moment": "^2.10.3",
     "request": "^2.58.0"
   },
   "devDependencies": {
