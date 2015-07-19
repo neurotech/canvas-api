@@ -47,3 +47,57 @@ test('Canvas API - SIS Import Status - All', function (t) {
       t.equal(err, null);
     });
 });
+
+/*
+  SIS Upload
+*/
+
+test('Canvas API - SIS Upload - No arguments', function (t) {
+  t.plan(1);
+  canvas.sisUpload()
+    .then(function (res) {
+      t.equal(res, null, 'No `success` response received.');
+    }, function (err) {
+      t.ok(err, 'Returned error: ' + '`' + err + '`');
+    });
+});
+
+test('Canvas API - SIS Upload - Sample CSV and no dataset', function (t) {
+  t.plan(1);
+  canvas.sisUpload({
+    csv: './csv/sample.csv'
+  })
+    .then(function (res) {
+      t.equal(res, null, 'No `success` response received.');
+    }, function (err) {
+      t.ok(err, 'Returned error: ' + '`' + err + '`');
+    });
+});
+
+test('Canvas API - SIS Upload - No CSV and sample dataset', function (t) {
+  t.plan(1);
+  canvas.sisUpload({
+    dataset: 'terms'
+  })
+    .then(function (res) {
+      t.equal(res, null, 'No `success` response received.');
+    }, function (err) {
+      t.ok(err, 'Returned error: ' + '`' + err + '`');
+    });
+});
+
+test('Canvas API - SIS Upload - Sample CSV and sample dataset', function (t) {
+  // sample.csv only contains header rows so no data will change in your Canvas instance when running tests.
+  // This will generate false positive error in your Canvas instance, in Account > SIS Import > Last Batch:
+  // `There was an error importing your SIS data. No records were imported.`
+  t.plan(1);
+  canvas.sisUpload({
+    csv: '../tests/csv/sample.csv',
+    dataset: 'terms'
+  })
+    .then(function (res) {
+      t.equal(res.workflow_state, 'created', 'CSV uploaded and SIS Import started.');
+    }, function (err) {
+      t.equal(err, null);
+    });
+});
