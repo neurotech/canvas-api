@@ -1,3 +1,3 @@
-// TODO: Add support for account IDs in lib/canvas-endpoints.js
+'use strict';
 
 module.exports = require('./lib/sis');
