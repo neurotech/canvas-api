@@ -78,6 +78,43 @@ canvas.sisStatus({scope: 5})
   });
 ```
 
+### sisUpload([config])
+
+POSTs a CSV file to the SIS Import endpoint that is formatted to match Instructure's [SIS CSV Format](https://canvas.instructure.com/doc/api/file.sis_csv.html). Upon success, a [SIS Import](https://canvas.instructure.com/doc/api/sis_imports.html#SisImport) is returned.
+
+Available options for `config` are:
+
+#### config.csv
+
+Must be a valid path to a CSV file, i.e. `''./csv/enrolments.csv'`.
+
+#### config.dataset
+
+A string that is used to apply the `diffing_data_set_identifier` to the POST request, i.e. `'enrolments'`.
+
+#### config.key
+
+(Optional) Overrides the `CANVAS_API_KEY` environment variable.
+
+#### config.domain
+
+(Optional) Overrides the `CANVAS_API_DOMAIN` environment variable.
+
+### Example
+
+``` javascript
+canvas.sisUpload({
+  csv: './csv/enrolments.csv',
+  dataset: 'enrolments'
+})
+  .then(function (res) {
+    // Log the SIS Import object returned by Canvas to the console.
+    console.log(res);
+  }, function (err) {
+    console.error(err);
+  });
+```
+
 ## Tests
 
 Tests can be run with `npm test` in the module's directory.
