@@ -1,7 +1,7 @@
 {
   "name": "canvas-api",
   "version": "1.0.0",
-  "description": "A simple wrapper for the Canvas LMS API.",
+  "description": "A Promise-based collection of helper methods for the Canvas LMS API.",
   "main": "index.js",
   "dependencies": {
     "moment": "^2.10.3",
