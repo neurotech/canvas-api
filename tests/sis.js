@@ -96,7 +96,7 @@ test('Canvas API - SIS Upload - Sample CSV and sample dataset', function (t) {
     dataset: 'terms'
   })
     .then(function (res) {
-      t.equal(res.workflow_state, 'created', 'CSV uploaded and SIS Import started.');
+      t.notEqual(res.dataset, null, 'CSV uploaded and SIS Import started.');
     }, function (err) {
       t.equal(err, null);
     });
