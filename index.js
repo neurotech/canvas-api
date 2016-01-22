@@ -1,3 +1,8 @@
 'use strict';
 
-module.exports = require('./lib/sis');
+var sis = require('./lib/sis');
+var migration = require('./lib/migration');
+
+var canvas = {sis, migration};
+
+module.exports = canvas;
