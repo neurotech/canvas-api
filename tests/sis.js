@@ -1,9 +1,10 @@
 var test = require('tape');
-var canvas = require('../lib/sis');
+var path = require('path');
+var sis = require('../lib/sis');
 
 test('Canvas API - SIS Import Status - No arguments', function (t) {
   t.plan(1);
-  canvas.sisStatus()
+  sis.status()
     .then(function (res) {
       t.equal(res, null, 'No response - there must have been an error.');
     }, function (err) {
@@ -13,7 +14,8 @@ test('Canvas API - SIS Import Status - No arguments', function (t) {
 
 test('Canvas API - SIS Import Status - \'latest\'', function (t) {
   t.plan(2);
-  canvas.sisStatus({
+  sis.status({
+    domain: process.env.CANVAS_API_DOMAIN,
     scope: 'latest'
   })
     .then(function (res) {
@@ -26,7 +28,8 @@ test('Canvas API - SIS Import Status - \'latest\'', function (t) {
 
 test('Canvas API - SIS Import Status - ID of 1', function (t) {
   t.plan(1);
-  canvas.sisStatus({
+  sis.status({
+    domain: process.env.CANVAS_API_DOMAIN,
     scope: 1
   })
     .then(function (res) {
@@ -38,7 +41,8 @@ test('Canvas API - SIS Import Status - ID of 1', function (t) {
 
 test('Canvas API - SIS Import Status - All', function (t) {
   t.plan(1);
-  canvas.sisStatus({
+  sis.status({
+    domain: process.env.CANVAS_API_DOMAIN,
     scope: 'all'
   })
     .then(function (res) {
@@ -54,7 +58,7 @@ test('Canvas API - SIS Import Status - All', function (t) {
 
 test('Canvas API - SIS Upload - No arguments', function (t) {
   t.plan(1);
-  canvas.sisUpload()
+  sis.upload()
     .then(function (res) {
       t.equal(res, null, 'No `success` response received.');
     }, function (err) {
@@ -64,7 +68,7 @@ test('Canvas API - SIS Upload - No arguments', function (t) {
 
 test('Canvas API - SIS Upload - Sample CSV and no dataset', function (t) {
   t.plan(1);
-  canvas.sisUpload({
+  sis.upload({
     csv: './csv/sample.csv'
   })
     .then(function (res) {
@@ -76,7 +80,7 @@ test('Canvas API - SIS Upload - Sample CSV and no dataset', function (t) {
 
 test('Canvas API - SIS Upload - No CSV and sample dataset', function (t) {
   t.plan(1);
-  canvas.sisUpload({
+  sis.upload({
     dataset: 'terms'
   })
     .then(function (res) {
@@ -91,8 +95,8 @@ test('Canvas API - SIS Upload - Sample CSV and sample dataset', function (t) {
   // This will generate false positive error in your Canvas instance, in Account > SIS Import > Last Batch:
   // `There was an error importing your SIS data. No records were imported.`
   t.plan(1);
-  canvas.sisUpload({
-    csv: '../tests/csv/sample.csv',
+  sis.upload({
+    csv: path.normalize(__dirname + '/csv/sample.csv'),
     dataset: 'terms'
   })
     .then(function (res) {
