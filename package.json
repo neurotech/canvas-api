@@ -4,12 +4,12 @@
   "description": "A Promise-based collection of helper methods for the Canvas LMS API.",
   "main": "index.js",
   "dependencies": {
-    "moment": "^2.10.3",
-    "request": "^2.58.0"
+    "moment": "2.11.1",
+    "request": "2.67.0"
   },
   "devDependencies": {
     "tap-prettify": "0.0.2",
-    "tape": "^4.0.0"
+    "tape": "4.4.0"
   },
   "engines": {
     "node": ">=0.11"
