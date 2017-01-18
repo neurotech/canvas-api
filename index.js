@@ -1,4 +1,3 @@
-'use strict';
 const helpers = require('./lib/helpers');
 const sis = require('./lib/sis');
 const course = require('./lib/course');

@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
   domain: process.env.CANVAS_API_DOMAIN,
   apiVersion: process.env.CANVAS_API_VERSION,
