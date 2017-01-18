@@ -9,6 +9,7 @@ test('Course - Migration', (t) => {
   course.migrate(source, destination, (error, results) => {
     if (error) {
       t.fail(error.statusCode);
+      console.error(error);
     } else {
       t.ok(typeof results.body.id, 'number');
     }
