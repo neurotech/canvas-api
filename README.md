@@ -1,149 +1,159 @@
-# canvas-api
+# :panda_face: canvas-api
 
 [![Build Status](https://travis-ci.org/neurotech/canvas-api.svg?branch=master)](https://travis-ci.org/neurotech/canvas-api)
 
-*A Promise-based collection of helper methods for the [Canvas LMS](http://www.canvaslms.com/) API.*
+*A collection of helper methods for the [Canvas LMS](http://www.canvaslms.com/) API.*
 
 ## Installation
 
+### Using [npm](https://www.npmjs.com/):
+
 `npm install canvas-api --save`
+
+### Using [Yarn](https://yarnpkg.com/):
+
+`yarn add canvas-api`
 
 ## Configuration and Authorization
 
-`canvas-api` expects some credentials for authenticating with your organization's Canvas instance. You can provide these credentials via the following environment variables (this is the preferred approach with regards to the security of your API key).
+`canvas-api` requires some credentials for authenticating with your organization's Canvas instance - an API key and the domain of your Canvas instance, as well as some operational settings. You can provide these credentials by setting the following environment variables accordingly:
 
+Environment Variable  | Example  | Description
+----------------------|----------|------------
+`CANVAS_API_KEY`      | `secret` | Your API key
+`CANVAS_API_DOMAIN`   | `organisation.instructure.com` | Your organisation's Canvas domain
+`CANVAS_API_VERSION`  | `v1` | API version
+`CANVAS_API_THROTTLE` | `1000` | Delay in `ms` between requests for `helpers.getAllResources()`
+
+## Usage
+
+`require` the module in your node.js application and invoke methods accordingly.
+
+```javascript
+const canvas = require('canvas-api');
 ```
-CANVAS_API_KEY=secret
-CANVAS_API_DOMAIN=organization.instructure.com
+
+## Methods
+
+### Common Helpers
+
+#### `helpers.getAllResources(options, callback)`
+
+> Iterates over the pagination URLs returned by the Canvas API, captures the results from each iteration, and then returns an array of results once complete.
+
+Values for `options` are:
+
+##### options.url
+
+**(Required)** API endpoint URL
+
+##### options.data
+
+**(Optional)** Query string variables
+
+##### Example:
+
+```javascript
+let options = {
+  url: `https://organisation.instructure.com/api/v1/accounts/1/courses`,
+  data: {
+    per_page: 100
+  }
+};
+
+canvas.helpers.getAllResources(options, (error, results) => {
+  if (error) {
+    console.error(error);
+    // Error!
+  } else {
+    console.log(results);
+    // [ results ... ]
+  }
+});
 ```
 
-## Usage/API
+### Courses
 
-``` javascript
-var canvas = require('canvas-api');
+#### `course.migrate(source, destination, callback)`
+
+> Migrates the content of one course to another using the `course_copy_importer` migration type.
+
+##### source
+
+**(Required)** `course_id` of the course that will be copied **from**.
+
+##### destination
+
+**(Required)** `course_id` of the course that will be copied **to**.
+
+##### Example:
+
+```javascript
+canvas.course.migrate(1, 110, (error, results) => {
+  if (error) {
+    console.error(error);
+    // Error!
+  } else {
+    console.log(results.body);
+    // {
+    //   id: 401,
+    //   ...
+    // }
+  }
+});
 ```
 
 ### SIS Imports
 
-#### sis.status([config])
+#### `sis.upload(options, callback)`
 
-Return [SIS Import](https://canvas.instructure.com/doc/api/sis_imports.html#SisImport) status information.
+> POSTs a CSV file to the SIS Import endpoint that is formatted to match Instructure's [SIS CSV Format](https://canvas.instructure.com/doc/api/file.sis_csv.html). Upon success, a [SIS Import](https://canvas.instructure.com/doc/api/sis_imports.html#SisImport) Object is returned.
 
-Available options for `config` are:
+`options` should be an object containing the following information:
 
-##### config.domain
+Key       | Required | Description                    | Example
+----------|----------|--------------------------------|--------
+`csv`     | yes      | Path to CSV                    | `'./path/to/file.csv'`
+`dataset` | yes      | Dataset that is being imported | `'courses'`
 
-(Optional) Overrides the `CANVAS_API_DOMAIN` environment variable.
+##### Example:
 
-##### config.scope
-
- - If `latest` or if no `scope` is supplied, the latest SIS Import object will be returned.
- - If a SIS Import `id` is supplied, the SIS Import object with that id will be returned.
- - If `'all'` is supplied, all SIS Import objects will be returned.
-
-###### Example
-
-``` javascript
-canvas.sis.status({scope: 5})
-  .then(function (res) {
-    // Log the SIS Import object with the ID of 5 to the console.
-    console.log(res);
-  }, function (err) {
-    console.error(err);
-  });
-```
-
-#### sis.upload([config])
-
-POSTs a CSV file to the SIS Import endpoint that is formatted to match Instructure's [SIS CSV Format](https://canvas.instructure.com/doc/api/file.sis_csv.html). Upon success, a [SIS Import](https://canvas.instructure.com/doc/api/sis_imports.html#SisImport) is returned.
-
-Available options for `config` are:
-
-##### config.domain
-
-(Optional) Overrides the `CANVAS_API_DOMAIN` environment variable.
-
-##### config.csv
-
-Must be a valid path to a CSV file, i.e. `'./csv/enrolments.csv'`.
-
-##### config.dataset
-
-A string that is used to apply the `diffing_data_set_identifier` to the POST request, i.e. `'enrolments'`.
-
-###### Example
-
-``` javascript
+```javascript
 canvas.sis.upload({
-  csv: './csv/enrolments.csv',
-  dataset: 'enrolments'
-})
-  .then(function (res) {
-    // Log the SIS Import object returned by Canvas to the console.
-    console.log(res);
-  }, function (err) {
-    console.error(err);
-  });
+  csv: './csv/courses.csv',
+  dataset: 'courses'
+}, (error, results) => {
+  if (error) {
+    console.error(error);
+    // Error!
+  } else {
+    console.log(results);
+    // [ results ... ]
+  }
+});
 ```
 
-### Course Migration
+#### `sis.status(scope, callback)`
 
-#### migration.migrate([config])
+> Return [SIS Import](https://canvas.instructure.com/doc/api/sis_imports.html#SisImport) status information.
 
-Migrates the content of one course to another using the `course_copy_importer` migration type.
+`scope` can either be:
 
-Available options for `config` are:
+ - `'all'` - returns the latest `10` SIS Import objects.
+ - `Number` - returns the SIS Import with the ID corresponding to the supplied `Number`.
 
-##### config.domain
+If `scope` is *not* supplied, the latest `10` SIS Import objects are returned.
 
-(Optional) Overrides the `CANVAS_API_DOMAIN` environment variable.
+##### Example:
 
-##### config.from_id
-
-ID number of the course that will be copied _**from**_.
-
-##### config.to_id
-
-ID number of the course that will be copied _**to**_.
-
-###### Example
-
-``` javascript
-canvas.migration.migrate({
-  from_id: 5,
-  to_id: 42
-})
-  .then(function (res) {
-    // Log the ContentMigration object returned by Canvas to the console.
-    console.log(res);
-  }, function (err) {
-    console.error(err);
-  });
+```javascript
+canvas.sis.status(10, (error, results) => {
+  if (error) {
+    console.error(error);
+    // Error!
+  } else {
+    console.log(results);
+    // [ results ... ]
+  }
+});
 ```
-
----
-
-## Breaking Changes
-
-### > v1.0.3
-
-
-#### SIS Imports
-
-`sisStatus` and `sisUpload` are now subsumed into the `sis` object that this module exports.
-
-i.e. `sisStatus` becomes `sis.status`
-
-#### Authorization Keys
-
-The ability to override the authorization key has been removed in favour of keeping sensitive credentials like that stored as environment variables.
-
----
-
-## Tests
-
-Tests can be run with `npm test` in the module's directory.
-
-If you haven't set your environment variables yet, you can run the tests by supplying them via the command line:
-
-`CANVAS_API_KEY=secret CANVAS_API_DOMAIN=organization.instructure.com npm test`

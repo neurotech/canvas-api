@@ -1,8 +1,9 @@
 'use strict';
+const helpers = require('./lib/helpers');
+const sis = require('./lib/sis');
+const course = require('./lib/course');
+const endpoint = require('./lib/endpoint');
 
-var sis = require('./lib/sis');
-var migration = require('./lib/migration');
-
-var canvas = {sis, migration};
+let canvas = { helpers, sis, course, endpoint };
 
 module.exports = canvas;

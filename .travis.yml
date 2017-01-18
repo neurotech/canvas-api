@@ -1,10 +1,6 @@
+sudo: false
 language: node_js
 node_js:
-- '0.12'
-- '0.11'
-- iojs
-- iojs-v1.0.4
-notifications:
-  hipchat:
-    rooms:
-      secure: Vxazw2P1QLTIL7ZV/K+arm0xtUKpJJ7R8tk/dOrqe2o4IgBULvaB7fTdCo6rKmE+1wp7Astl4tGYBEGb9s7CaQQabbG3aw8xGuHCLMcLKd7/Rx4mbo5+WZf9SNAUJ/8ApjV3YdKDozFJNxl8FfmF6aM6vjO+ai2hYmY+GbXs9ijTueD6aWfQIDvFfQKyC9BXSdu1p0p9zJIXpoISSpWwBJmxzzHtueqv6jFh6FIb3Rsw1SDBDxBfvE4vmP/9gVwiIhX44E41nqfMVH14yXZcYLgjDywrPluYJ1zhZeIewJ8S4w/aQdpdKNQWf/rh+6nJEWl8iHtB8jxiScbcj/33WeXo8hgZghdeZ/RxpNNpyJdTfSyCU/cgt6ushCz8r5cMpwyhnSfcTeHV/vAI+tBrNwyIadHcRypyV+5Dxz+yJkKRix90Bl6WejlKVWIMnx52xj/9VLrqVJoyPvpLjGFwCEoqdkKGk3HgBBHFXvk960r4efRSqgt5BA21ekK1GHb33rQNY+d5NYlgCH20wz8x+1CeWyhAERwzhFrIoGT4fEdrO68qJEgwTJWKUCaf6uxYRJWHIl0EFBUL8REzor93pgMzfhoWJ1JN2H2kclOK9yvpQbiky90tEKmkajXWShVo7avjSrDtuxtVTRW/hu4qSxuSpmBQGZAqO2nP7iQTqrg=
+  - '6'
+  - '5'
+  - '4'
