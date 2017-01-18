@@ -1,27 +1,6 @@
-# canvas-api
+# Legacy README
 
-[![Build Status](https://travis-ci.org/neurotech/canvas-api.svg?branch=master)](https://travis-ci.org/neurotech/canvas-api)
-
-*A Promise-based collection of helper methods for the [Canvas LMS](http://www.canvaslms.com/) API.*
-
-## Installation
-
-`npm install canvas-api --save`
-
-## Configuration and Authorization
-
-`canvas-api` expects some credentials for authenticating with your organization's Canvas instance. You can provide these credentials via the following environment variables (this is the preferred approach with regards to the security of your API key).
-
-```
-CANVAS_API_KEY=secret
-CANVAS_API_DOMAIN=organization.instructure.com
-```
-
-## Usage/API
-
-``` javascript
-var canvas = require('canvas-api');
-```
+## Versions <= 2.0.0
 
 ### SIS Imports
 
@@ -137,13 +116,3 @@ i.e. `sisStatus` becomes `sis.status`
 #### Authorization Keys
 
 The ability to override the authorization key has been removed in favour of keeping sensitive credentials like that stored as environment variables.
-
----
-
-## Tests
-
-Tests can be run with `npm test` in the module's directory.
-
-If you haven't set your environment variables yet, you can run the tests by supplying them via the command line:
-
-`CANVAS_API_KEY=secret CANVAS_API_DOMAIN=organization.instructure.com npm test`
