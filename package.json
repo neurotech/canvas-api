@@ -17,7 +17,7 @@
     "node": ">=4"
   },
   "scripts": {
-    "test": "echo $CANVAS_API_TEST_MIGRATION_SRC_ID && echo $CANVAS_API_TEST_MIGRATION_DEST_ID && tape tests/**/*.js"
+    "test": "tape tests/**/*.js"
   },
   "repository": {
     "type": "git",
