@@ -4,19 +4,19 @@
   "description": "A Promise-based collection of helper methods for the Canvas LMS API.",
   "main": "index.js",
   "dependencies": {
-    "moment": "2.11.1",
-    "request": "2.67.0"
+    "date-fns": "^1.15.0",
+    "form-data": "^2.1.2",
+    "parse-link-header": "^0.4.1",
+    "tiny-json-http": "^5.0.1"
   },
   "devDependencies": {
-    "tap-prettify": "0.0.2",
-    "tape": "4.4.0"
+    "tape": "^4.6.3",
+    "semistandard": "^9.2.1"
   },
   "engines": {
-    "node": ">=0.11"
+    "node": ">=4"
   },
-  "scripts": {
-    "test": "tap-prettify tests/*.js"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/neurotech/canvas-api.git"
