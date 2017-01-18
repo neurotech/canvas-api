@@ -16,7 +16,9 @@
   "engines": {
     "node": ">=4"
   },
-  "scripts": {},
+  "scripts": {
+    "test": "tape tests/**/*.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/neurotech/canvas-api.git"
