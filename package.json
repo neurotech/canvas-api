@@ -10,8 +10,9 @@
     "tiny-json-http": "^5.0.1"
   },
   "devDependencies": {
-    "tape": "^4.6.3",
-    "semistandard": "^9.2.1"
+    "dateformat": "^2.0.0",
+    "semistandard": "^9.2.1",
+    "tape": "^4.6.3"
   },
   "engines": {
     "node": ">=4"
