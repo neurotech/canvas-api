@@ -157,3 +157,101 @@ canvas.sis.status(10, (error, results) => {
   }
 });
 ```
+
+### Assignments
+
+#### `assignment.create(course, params, callback)`
+
+> Create an assignment in the desired course.
+
+`course` is the ID of the Canvas course that you wish to create the assignment in.
+
+`params` must be an object containing any of the parameters listed [here](https://canvas.instructure.com/doc/api/assignments.html#method.assignments_api.create). The only **required** parameter is `assignment[name]`. The object must be structured as shown in the example below:
+
+##### Example:
+
+```javascript
+var createParams = {
+  assignment: {
+    name: 'Assignment Name',
+    points_possible: 100
+  }
+};
+
+assignment.create(123, createParams, (error, results) => {
+  if (error) {
+    // Error!
+  } else {
+    // [ results ... ]
+  }
+});
+```
+
+#### `assignment.edit(course, id, params, callback)`
+
+> Edit an existing assignment by ID in the desired course.
+
+`course` is the ID of the Canvas course that contains the assignment that you wish to edit.
+
+`id` is the ID of the assignment that you wish to edit.
+
+`params` must be an object containing any of the parameters listed [here](https://canvas.instructure.com/doc/api/assignments.html#method.assignments_api.update). The object must be structured as shown in the example below:
+
+##### Example:
+
+```javascript
+var editParams = {
+  assignment: {
+    name: 'Assignment Name (Edited)',
+    points_possible: 50
+  }
+};
+
+assignment.edit(123, 4567, editParams, (error, results) => {
+  if (error) {
+    // Error!
+  } else {
+    // [ results ... ]
+  }
+});
+```
+
+#### `assignment.delete(course, id, callback)`
+
+> Delete an assignment in the desired course.
+
+`course` is the ID of the Canvas course that contains the assignment that you wish to delete.
+
+`id` is the ID of the assignment that you wish to delete.
+
+##### Example:
+
+```javascript
+assignment.delete(123, 4567, (error, results) => {
+  if (error) {
+    // Error!
+  } else {
+    // [ results ... ]
+  }
+});
+```
+
+## Tests
+
+The `canvas-api` test suite requires some environment variables to be set:
+
+Environment Variable              | Description | Example
+----------------------------------|-------------|--------
+CANVAS_API_TEST_MIGRATION_SRC_ID  | `course_id` of the 'source' course to test Course Migration | `1`
+CANVAS_API_TEST_MIGRATION_DEST_ID | `course_id` of the 'destination' course to test Course Migration | `110`
+CANVAS_API_TEST_COURSE_ID         | `course_id` of the course to use for creating, editing, deleting assignments | `123`
+
+The suite can be run by executing the `test` script contained in `package.json`:
+
+### Using [npm](https://www.npmjs.com/):
+
+`npm run test`
+
+### Using [Yarn](https://yarnpkg.com/):
+
+`yarn run test`
