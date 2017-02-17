@@ -13,7 +13,7 @@ test('Common Helpers - Get All Resources', (t) => {
   t.plan(1);
   helpers.getAllResources(options, (error, results) => {
     if (error) {
-      t.fail(error.statusCode);
+      t.fail(error);
     } else {
       t.ok(results.length > 0);
     }
