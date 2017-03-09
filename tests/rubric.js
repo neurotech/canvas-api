@@ -1,8 +1,8 @@
 const test = require('tape');
 const rubric = require('../lib/rubric');
 
-let course = process.env.CANVAS_API_TEST_COURSE_ID;
-let assignment = process.env.CANVAS_API_TEST_ASSIGNMENT_ID;
+let course = process.env.CANVAS_API_TEST_RUBRIC_COURSE_ID;
+let assignment = process.env.CANVAS_API_TEST_RUBRIC_ASSIGNMENT_ID;
 let params = {
   data: {
     per_page: 100
