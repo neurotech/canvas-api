@@ -236,6 +236,52 @@ assignment.delete(123, 4567, (error, results) => {
 });
 ```
 
+### Rubrics
+
+#### `rubric.list(course, params, (callback)`
+
+> List rubrics used in the desired course.
+
+##### Example:
+
+```javascript
+var params = {
+  data: {
+    per_page: 100
+  }
+};
+
+rubric.list(123, params, (error, results) => {
+  if (error) {
+    // Error!
+  } else {
+    // [ results ... ]
+  }
+});
+```
+
+#### `rubric.detail(course, assignment, params, (callback)`
+
+> List rubric details for a desired assignment in a course.
+
+##### Example:
+
+```javascript
+var params = {
+  data: {
+    per_page: 100
+  }
+};
+
+rubric.detail(123, 4567, params, (error, results) => {
+  if (error) {
+    // Error!
+  } else {
+    // [ results ... ]
+  }
+});
+```
+
 ## Tests
 
 The `canvas-api` test suite requires some environment variables to be set:
@@ -245,6 +291,7 @@ Environment Variable              | Description | Example
 CANVAS_API_TEST_MIGRATION_SRC_ID  | `course_id` of the 'source' course to test Course Migration | `1`
 CANVAS_API_TEST_MIGRATION_DEST_ID | `course_id` of the 'destination' course to test Course Migration | `110`
 CANVAS_API_TEST_COURSE_ID         | `course_id` of the course to use for creating, editing, deleting assignments | `123`
+CANVAS_API_TEST_ASSIGNMENT_ID     | `assignment_id` of the assignment to use for getting Rubric detail | `4567`
 
 The suite can be run by executing the `test` script contained in `package.json`:
 
