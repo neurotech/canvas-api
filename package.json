@@ -19,7 +19,7 @@
     "node": ">=4"
   },
   "scripts": {
-    "test": "tape tests/**/*.js"
+    "test": "tape tests/**/*.js | node_modules/.bin/tap-spec"
   },
   "repository": {
     "type": "git",
