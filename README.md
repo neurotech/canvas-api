@@ -1,7 +1,5 @@
 # :panda_face: canvas-api
 
-[![Build Status](https://travis-ci.org/neurotech/canvas-api.svg?branch=master)](https://travis-ci.org/neurotech/canvas-api)
-
 *A collection of helper methods for the [Canvas LMS](http://www.canvaslms.com/) API.*
 
 ## Installation
