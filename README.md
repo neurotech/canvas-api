@@ -160,6 +160,26 @@ canvas.sis.status(10, (error, results) => {
 
 ### Assignments
 
+#### `assignment.get(course, id, callback)`
+
+> Get an existing assignment by id in the desired course.
+
+`course` is the ID of the Canvas course that you wish to get the assignment from.
+
+`id` is the ID of the Assignment that you wish to get.
+
+##### Example:
+
+```javascript
+assignment.create(123, 1001, (error, results) => {
+  if (error) {
+    // Error!
+  } else {
+    // [ results ... ]
+  }
+});
+```
+
 #### `assignment.create(course, params, callback)`
 
 > Create an assignment in the desired course.

@@ -50,6 +50,17 @@ test('Assignment - Edit', (t) => {
   });
 });
 
+test('Assignment - Get', (t) => {
+  t.plan(1);
+  assignment.get(course, id, (error, results) => {
+    if (error) {
+      t.fail(error.statusCode);
+    } else {
+      t.ok(results.body.name, editParams.assignment.name);
+    }
+  });
+});
+
 test('Assignment - Delete', (t) => {
   t.plan(1);
   assignment.delete(course, id, (error, results) => {
