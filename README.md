@@ -16,12 +16,13 @@
 
 `canvas-api` requires some credentials for authenticating with your organization's Canvas instance - an API key and the domain of your Canvas instance, as well as some operational settings. You can provide these credentials by setting the following environment variables accordingly:
 
-Environment Variable  | Example  | Description
-----------------------|----------|------------
-`CANVAS_API_KEY`      | `secret` | Your API key
-`CANVAS_API_DOMAIN`   | `organisation.instructure.com` | Your organisation's Canvas domain
-`CANVAS_API_VERSION`  | `v1` | API version
-`CANVAS_API_THROTTLE` | `1000` | Delay in `ms` between requests for `helpers.getAllResources()`
+Environment Variable             | Example                        | Description
+---------------------------------|--------------------------------|---
+`CANVAS_API_VERSION`             | `v1`                           | API version
+`CANVAS_API_DIFFING_DROP_STATUS` | 'completed'                    | [Parameter for Import SIS Data endpoint](https://canvas.instructure.com/doc/api/sis_imports.html#method.sis_imports_api.create)
+`CANVAS_API_DOMAIN`              | `organisation.instructure.com` | Your organisation's Canvas domain
+`CANVAS_API_KEY`                 | `secret`                       | Your API key
+`CANVAS_API_THROTTLE`            | `1000`                         | Delay in `ms` between requests for `helpers.getAllResources()`
 
 ## Usage
 
