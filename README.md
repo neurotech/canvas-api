@@ -102,6 +102,33 @@ canvas.course.migrate(1, 110, (error, results) => {
 });
 ```
 
+
+#### `course.discuss(course, params, callback)`
+
+> Create an assignment in the desired course.
+
+`course` is the ID of the Canvas course that you wish to create the assignment in.
+
+`params` must be an object containing any of the parameters listed [here](https://canvas.instructure.com/doc/api/discussion_topics.html). nment[name]`. 
+
+##### Example:
+
+```javascript
+var createParams = {
+  title: ' This is the subject message title',
+  message: 'This is a message'
+  }
+};
+
+course.discuss(123, createParams, (error, results) => {
+  if (error) {
+    // Error!
+  } else {
+    // [ results ... ]
+  }
+});
+```
+
 ### SIS Imports
 
 #### `sis.upload(options, callback)`
@@ -235,6 +262,27 @@ assignment.edit(123, 4567, editParams, (error, results) => {
 });
 ```
 
+#### `assignment.searchbyname(course, name, callback)`
+
+> Search for an existing assignment by name in the desired course.
+
+`course` is the ID of the Canvas course that contains the assignment that you wish to edit.
+
+`name` is the substring of the name of the assignment that you wish to find.
+
+##### Example:
+
+```javascript
+
+assignment.searchbyname(123, name, (error, results) => {
+  if (error) {
+    // Error!
+  } else {
+    // [ results ... ]
+  }
+});
+```
+
 #### `assignment.delete(course, id, callback)`
 
 > Delete an assignment in the desired course.
@@ -254,6 +302,125 @@ assignment.delete(123, 4567, (error, results) => {
   }
 });
 ```
+
+
+### Modules
+
+#### `cmodule.get(course, id, callback)`
+
+> Get an existing cmodule by id in the desired course.
+
+`course` is the ID of the Canvas course that you wish to get the cmodule from.
+
+`id` is the ID of the cmodule that you wish to get.
+
+##### Example:
+
+```javascript
+cmodule.create(123, 1001, (error, results) => {
+  if (error) {
+    // Error!
+  } else {
+    // [ results ... ]
+  }
+});
+```
+
+#### `cmodule.create(course, params, callback)`
+
+> Create an cmodule in the desired course.
+
+`course` is the ID of the Canvas course that you wish to create the cmodule in.
+
+`params` must be an object containing any of the parameters listed [here](https://canvas.instructure.com/doc/api/modules.html).
+##### Example:
+
+```javascript
+var createParams = {
+  module: {
+    name: 'cmodule Name'
+  }
+};
+
+cmodule.create(123, createParams, (error, results) => {
+  if (error) {
+    // Error!
+  } else {
+    // [ results ... ]
+  }
+});
+```
+
+#### `cmodule.edit(course, id, params, callback)`
+
+> Edit an existing cmodule by ID in the desired course.
+
+`course` is the ID of the Canvas course that contains the cmodule that you wish to edit.
+
+`id` is the ID of the cmodule that you wish to edit.
+
+`params` must be an object containing any of the parameters listed [here](https://canvas.instructure.com/doc/api/modules.html#method.modules_api.update). The object must be structured as shown in the example below:
+
+##### Example:
+
+```javascript
+var editParams = {
+  module: {
+    name: 'cmodule Name (Edited)'
+
+  }
+};
+
+cmodule.edit(123, 4567, editParams, (error, results) => {
+  if (error) {
+    // Error!
+  } else {
+    // [ results ... ]
+  }
+});
+```
+
+#### `cmodule.searchbyname(course, name, callback)`
+
+> Search for an existing cmodule by name in the desired course.
+
+`course` is the ID of the Canvas course that contains the cmodule that you wish to edit.
+
+`name` is the substring of the name of the cmodule that you wish to find.
+
+##### Example:
+
+```javascript
+
+cmodule.searchbyname(123, name, (error, results) => {
+  if (error) {
+    // Error!
+  } else {
+    // [ results ... ]
+  }
+});
+```
+
+#### `cmodule.delete(course, id, callback)`
+
+> Delete an cmodule in the desired course.
+
+`course` is the ID of the Canvas course that contains the cmodule that you wish to delete.
+
+`id` is the ID of the cmodule that you wish to delete.
+
+##### Example:
+
+```javascript
+cmodule.delete(123, 4567, (error, results) => {
+  if (error) {
+    // Error!
+  } else {
+    // [ results ... ]
+  }
+});
+```
+
 
 ### Rubrics
 
