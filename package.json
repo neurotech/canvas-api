@@ -6,12 +6,16 @@
   "dependencies": {
     "bluebird": "^3.5.1",
     "date-fns": "1.29.0",
+    "dotenv": "^5.0.1",
     "form-data": "2.3.1",
+    "fs": "0.0.1-security",
     "parse-link-header": "1.0.1",
-    "tiny-json-http": "5.3.1"
+    "tiny-json-http": "5.3.1",
+    "webpack": "^4.6.0"
   },
   "devDependencies": {
     "dateformat": "3.0.2",
+    "nock": "^9.2.5",
     "semistandard": "11.0.0",
     "tap-spec": "^4.1.1",
     "tape": "4.8.0"
@@ -20,7 +24,7 @@
     "node": ">=4"
   },
   "scripts": {
-    "test": "tape tests/**/*.js | node_modules/.bin/tap-spec"
+    "test": "tape tests/*.js | node_modules/.bin/tap-spec"
   },
   "repository": {
     "type": "git",
