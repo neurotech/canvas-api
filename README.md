@@ -105,9 +105,9 @@ canvas.course.migrate(1, 110, (error, results) => {
 
 #### `course.discuss(course, params, callback)`
 
-> Create an assignment in the desired course.
+> Create a discussion topic in the desired course.
 
-`course` is the ID of the Canvas course that you wish to create the assignment in.
+`course` is the ID of the Canvas course that you wish to create the discussion topic in.
 
 `params` must be an object containing any of the parameters listed [here](https://canvas.instructure.com/doc/api/discussion_topics.html). nment[name]`. 
 
@@ -333,6 +333,7 @@ cmodule.create(123, 1001, (error, results) => {
 `course` is the ID of the Canvas course that you wish to create the cmodule in.
 
 `params` must be an object containing any of the parameters listed [here](https://canvas.instructure.com/doc/api/modules.html).
+
 ##### Example:
 
 ```javascript

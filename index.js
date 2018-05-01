@@ -5,7 +5,7 @@ const course = require('./lib/course');
 const assignment = require('./lib/assignment');
 const cmodule = require('./lib/module');
 
-let canvas = { helpers, endpoint, sis, course, assignment,cmodule };
+let canvas = { helpers, endpoint, sis, course, assignment, cmodule };
 
 module.exports = canvas;
 

@@ -4,14 +4,10 @@
   "description": "A Promise-based collection of helper methods for the Canvas LMS API.",
   "main": "index.js",
   "dependencies": {
-    "bluebird": "^3.5.1",
     "date-fns": "1.29.0",
     "dotenv": "^5.0.1",
-    "form-data": "2.3.1",
-    "fs": "0.0.1-security",
     "parse-link-header": "1.0.1",
-    "tiny-json-http": "5.3.1",
-    "webpack": "^4.6.0"
+    "tiny-json-http": "5.3.1"
   },
   "devDependencies": {
     "dateformat": "3.0.2",

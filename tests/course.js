@@ -3,7 +3,7 @@ const course = require('../lib/course');
 var nock = require('nock');
 const config = require('../config');
 
-// Dummy data used for Mocks
+// Dummy data used for
 let source = 1;
 let destination = 2;
 let id = 3;
