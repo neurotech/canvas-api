@@ -1,10 +1,42 @@
 const test = require('tape');
 const dateFormat = require('dateformat');
 const assignment = require('../lib/assignment');
+var nock = require('nock');
+const config = require('../config');
 
-let id;
+// Dummy data used for Mocks
+let source = 1;
+let destination = 2;
+let id = 3;
+let courseid = 4;
+let assignmentid = 5;
+let nameresponse = 'Canvas API - Test Suite Assignment';
+let res;
+
+// Mock http calls
+
+res = nock('https://'+config.domain+'/api/'+config.apiVersion)
+  .post('/courses/'+courseid+'/assignments')
+  .reply(200, { id: id });
+
+
+  res = nock('https://'+config.domain+'/api/'+config.apiVersion)
+  .put('/courses/'+courseid+'/assignments/'+assignmentid)
+  .reply(200, { name: nameresponse});
+
+
+  res = nock('https://'+config.domain+'/api/'+config.apiVersion)
+  .get('/courses/'+courseid+'/assignments/'+assignmentid)
+  .reply(200, { name: nameresponse});
+
+
+  res = nock('https://'+config.domain+'/api/'+config.apiVersion)
+  .intercept('/courses/'+courseid+'/assignments/'+assignmentid,'DELETE')
+  .reply(200, { id: id });
+
+
+
 let now = new Date();
-let course = process.env.CANVAS_API_TEST_COURSE_ID;
 let createParams = {
   assignment: {
     name: 'Canvas API - Test Suite Assignment',
@@ -29,7 +61,7 @@ let editParams = {
 
 test('Assignment - Create', (t) => {
   t.plan(1);
-  assignment.create(course, createParams, (error, results) => {
+  assignment.create(courseid, createParams, (error, results) => {
     if (error) {
       t.fail(error.statusCode);
     } else {
@@ -41,7 +73,7 @@ test('Assignment - Create', (t) => {
 
 test('Assignment - Edit', (t) => {
   t.plan(1);
-  assignment.edit(course, id, editParams, (error, results) => {
+  assignment.edit(courseid, assignmentid, editParams, (error, results) => {
     if (error) {
       t.fail(error.statusCode);
     } else {
@@ -52,7 +84,7 @@ test('Assignment - Edit', (t) => {
 
 test('Assignment - Get', (t) => {
   t.plan(1);
-  assignment.get(course, id, (error, results) => {
+  assignment.get(courseid, assignmentid, (error, results) => {
     if (error) {
       t.fail(error.statusCode);
     } else {
@@ -63,7 +95,7 @@ test('Assignment - Get', (t) => {
 
 test('Assignment - Delete', (t) => {
   t.plan(1);
-  assignment.delete(course, id, (error, results) => {
+  assignment.delete(courseid, assignmentid, (error, results) => {
     if (error) {
       t.fail(error.statusCode);
     } else {
