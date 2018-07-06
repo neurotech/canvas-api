@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/neurotech/canvas-api.git"
+    "url": "https://github.com/neurotech/canvas-api.git"
   },
   "keywords": [
     "canvas",
